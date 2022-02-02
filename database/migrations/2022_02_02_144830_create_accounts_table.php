@@ -17,6 +17,7 @@ class CreateAccountsTable extends Migration
             $table->id();
             $table->string('account_number')->unique();
             $table->double('account_balance');
+            $table->string('account_type');
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->softDeletes();

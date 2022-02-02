@@ -13,11 +13,12 @@ class Account extends Model
         "account_number",
         "account_balance",
         "user_id",
+        "account_type",
     ];
 
     protected $casts = [
         "account_balance" => "double",
-        
+
     ];
 
 
@@ -26,6 +27,14 @@ class Account extends Model
         return $this->belongsTo(User::class);
     }
 
+
+    // scope AccountNumberExists
+    public function scopeAccountNumberExists($query, $account_number)
+    {
+        return $query->where('account_number', $account_number);
+    }
+
+    
 
 
 

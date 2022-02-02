@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\{
     UserAuthController
 };
+use App\Http\Controllers\Account\{
+    AccountController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['prefix'=>'v1','middleware'=>['cors','json.response','apiKey_exist']], function() {
 
+    // User Auth
     Route::post('register', [UserAuthController::class, 'register']);
     Route::post('login', [UserAuthController::class, 'login']);
 
@@ -34,7 +38,8 @@ Route::group(['prefix'=>'v1','middleware'=>['cors','json.response','apiKey_exist
     Route::group(['middleware'=>['auth:user']], function(){
         Route::post('logout', [UserAuthController::class, 'logout']);
 
-        
+        // Account Routes
+        Route::post('createAccount', [AccountController::class, 'createAccount']);
 
     });
 });
