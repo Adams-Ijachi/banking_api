@@ -14,7 +14,8 @@ class AccountFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "account_number" => $this->faker->unique()->randomNumber(8),
+            "account_balance" => $this->faker->randomFloat(2, 0, 100),
         ];
     }
 }

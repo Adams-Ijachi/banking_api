@@ -41,4 +41,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // set password hashed
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+
+    // has many accounts
+    public function accounts()
+    {
+        
+        return $this->hasMany(Account::class);
+    }
+
+
+
 }
