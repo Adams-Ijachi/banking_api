@@ -34,6 +34,19 @@ class Account extends Model
         return $query->where('account_number', $account_number);
     }
 
+    // hasmany transactions
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'accountFrm');
+    }
+
+    // hasmany transactions
+
+    public function transactionsTo()
+    {
+        return $this->hasMany(Transaction::class, 'account_to');
+    }
+
     
 
 

@@ -33,7 +33,7 @@ class UserAuthController extends Controller
 
         $validated = $request->validated();
         $user = User::create($validated);
-        return response()->json(['message' => 'User registered successfully.'],200);
+        return response()->json(['message' => 'User registered successfully.'],201);
 
     }
 

@@ -57,6 +57,14 @@ class User extends Authenticatable
         return $this->hasMany(Account::class);
     }
 
+    // scope hasAccount
+    public function scopeHasAccount($query, $account_number)
+    {
+        dd($account_number);
+        return $query->whereHas('accounts', function ($query) use ($account_number) {
+            $query->where('account_number', $account_number);
+        });
+    }
 
 
 }

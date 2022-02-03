@@ -27,7 +27,7 @@ class AccountCreationRequest extends FormRequest
         return [
             //
             'account_type' => ['required','string', 'in:savings,current'],
-            'amount' => ['required','numeric'],
+            'amount' => ['required','numeric','min:1'],
         ];
     }
 }

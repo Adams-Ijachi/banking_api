@@ -17,8 +17,9 @@ class ApiKey
     public function handle(Request $request, Closure $next)
     {
         // Checks if API_KEY Header is given
+        $api_key = $request->header('x-api-key');
 
-        if ($request->hasHeader('x-api-key')) {
+        if ($api_key == env('API_KEY')) {
             
             return $next($request);
         }

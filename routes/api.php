@@ -11,6 +11,9 @@ use App\Http\Controllers\User\{
 use App\Http\Controllers\Account\{
     AccountController
 };
+use App\Http\Controllers\Transaction\{
+    TransactionController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +43,11 @@ Route::group(['prefix'=>'v1','middleware'=>['cors','json.response','apiKey_exist
 
         // Account Routes
         Route::post('createAccount', [AccountController::class, 'createAccount']);
+        Route::get('getAccountBalance/{account_number}', [AccountController::class, 'getAccountBalance']);
+
+        // Transaction Routes
+        Route::post('transfer', [TransactionController::class, 'Transfer']);
+        Route::get('transactionHistory/{account_number}', [TransactionController::class, 'transactionHistory']);
 
     });
 });

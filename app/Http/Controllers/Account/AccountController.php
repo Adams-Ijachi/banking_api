@@ -30,7 +30,21 @@ class AccountController extends Controller
 
         ]);
       
-        return response()->json(['message' => 'Account created successfully.','data'=>$account],200);
+        return response()->json(['message' => 'Account created successfully.','data'=>$account],201);
+    }
+
+
+    // getAccountBalance
+    public function getAccountBalance(Request $request, $account_number)
+    {
+        $account = Account::where('account_number',$account_number)->first();
+        
+        if(Auth::user()->id != $account->user_id) {
+            return response([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+        return response()->json(['message' => 'Account balance fetched successfully.','data'=>$account->account_balance],200);
     }
 
 
